@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Lacquer';
+    src: local('Lacquer-Regular');
+}
+
+* {
+    font-family: Lacquer;
+}
+
+#site-title{
+    
+}
