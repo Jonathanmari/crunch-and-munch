@@ -26,6 +26,10 @@
     font-family: Lacquer;
 }
 
+body{
+    background-color: var(--color-gray-500) !important;
+}
+
 #site-title{
     
 }

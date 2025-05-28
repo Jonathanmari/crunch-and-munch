@@ -9,19 +9,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 </head>
 <body>
-    <header class="row" id="header">
         <?php include 'header.php';?>
-    </header>
     
-    <main>
-        <div class="row justify-content-md-center">
-            <section class="col-sm-4 col-auto">
-                <div class="card"><h2 class="text-center">Munchies</h2></div>
-            </section>
-            
-            <section class="col-sm-4 col-auto">
-                <div class="card"><h2 class="text-center">Crunchies</h2></div>
-            </section>
+    <main class="container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="card col-sm m-3"><h2 class="text-center">Munchies</h2></div>
+                <div class="card col-sm m-3"><h2 class="text-center">Crunchies</h2></div>
+            </div>
         </div>
     </main>
 
