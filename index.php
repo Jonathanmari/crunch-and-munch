@@ -15,11 +15,11 @@
     
     <main>
         <div class="row justify-content-md-center">
-            <section class="col-sm-4">
+            <section class="col-sm-4 col-auto">
                 <div class="card"><h2 class="text-center">Munchies</h2></div>
             </section>
             
-            <section class="col-sm-4">
+            <section class="col-sm-4 col-auto">
                 <div class="card"><h2 class="text-center">Crunchies</h2></div>
             </section>
         </div>

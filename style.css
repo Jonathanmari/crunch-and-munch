@@ -1,4 +1,22 @@
-<<<<<<< HEAD
+:root {
+  /* Couleurs principales */
+  --color-primary: #363b56;
+  --color-secondary: #cf5140;
+  --color-tertiary: #e6d41d;
+
+  /* Couleurs neutres */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-gray-100: #e4e2df;
+  --color-gray-500: #a9bdc3;
+  --color-gray-900: #15182c;
+
+  /* États */
+  --color-success: #27ae60;
+  --color-error: #e74c3c;
+  --color-warning: #f39c12;
+}
+
 @font-face {
     font-family: 'Lacquer';
     src: local('Lacquer-Regular');
@@ -8,8 +26,10 @@
     font-family: Lacquer;
 }
 
-=======
->>>>>>> ba18aaa6474c554435970d51bb2881f80c27eb64
 #site-title{
     
+}
+
+.row{
+    max-width: 100%;
 }
