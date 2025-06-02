@@ -14,8 +14,8 @@
     <main class="container">
         <div class="container-fluid">
             <div class="row">
-                <div class="card col-sm m-3"><h2 class="text-center">Munchies</h2></div>
-                <div class="card col-sm m-3"><h2 class="text-center">Crunchies</h2></div>
+                <div class="card col-sm m-3 p-3 text-center"><h2 class="text-center">Munchies</h2><img class="img-fluid" src="images/munchies.jpg"></div>
+                <div class="card col-sm m-3 p-3 text-center"><h2 class="text-center">Crunchies</h2><img class="img-fluid" src="images/crunchies.jpg"></div>
             </div>
         </div>
     </main>
