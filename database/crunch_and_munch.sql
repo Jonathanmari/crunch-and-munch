@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 03 juin 2025 à 11:58
--- Version du serveur : 9.1.0
--- Version de PHP : 8.3.14
+-- Généré le : mer. 04 juin 2025 à 14:18
+-- Version du serveur : 8.3.0
+-- Version de PHP : 8.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `crunchandmunch`
+-- Base de données : `crunch_and_munch`
 --
 
 -- --------------------------------------------------------
@@ -29,7 +29,16 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int NOT NULL
+  `id` int NOT NULL,
+  `login` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `pseudonyme` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `prenom` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `date_inscription` date NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `login` (`login`) USING BTREE,
+  UNIQUE KEY `pseudonyme` (`pseudonyme`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 COMMIT;
 
