@@ -30,6 +30,7 @@
                             </ul>
                         </li>
                     </ul>
+                    <a href="connexion.php" role="button" class="btn btn-outline-light">Connexion</a>
                 </div>
             </div>
         </div>
