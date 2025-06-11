@@ -8,16 +8,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
 </head>
+
 <body>
     <?php include 'header.php';?>
     
     <main class="container my-4">
-        <div class="row">
-            <div class="card col-sm m-3 p-3 text-center">
+        <div class="row justify-content-center">
+            <div class="card col-sm m-3 p-3 text-center home-card">
                 <h2>Munchies</h2>
                 <img class="img-fluid" src="images/munchies.jpg" alt="Munchies">
             </div>
-            <div class="card col-sm m-3 p-3 text-center">
+            <div class="card col-sm m-3 p-3 text-center home-card">
                 <h2>Crunchies</h2>
                 <img class="img-fluid" src="images/crunchies.jpg" alt="Crunchies">
             </div>
