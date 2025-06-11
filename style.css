@@ -26,9 +26,34 @@
     font-family: Lacquer;
 }
 
-body{
-    background-color: var(--color-gray-500) !important;
+html, body {
+  height: 100%;
+  margin: 0;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1; 
+}
+
+footer {
+  background-color: #ddd;
+  text-align: center;
+  padding: 1rem;
+  height: 15vh;
+  
+}
+
+#connexion-form {
+
+}
+
+
 
 #site-title{
     
