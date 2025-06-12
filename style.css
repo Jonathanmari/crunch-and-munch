@@ -55,11 +55,9 @@ footer {
     color: white;
 }
 
-#connexion-form {
+#connexion-form, #inscription-form {
     padding-top: 20vh;
 }
-
-
 
 #site-title{
     

@@ -31,7 +31,8 @@ echo <<<HTML
                             </ul>
                         </li>
                     </ul>
-                    <a href="connexion.php" role="button" class="btn btn-outline-light">Connexion</a>
+                    <a href="connexion.php" role="button" class="btn btn-outline-light mx-1">Connexion</a>
+                    <a href="inscription.php" role="button" class="btn btn-outline-light mx-1">Inscription</a>
                 </div>
             </div>
         </div>
