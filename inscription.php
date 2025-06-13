@@ -1,6 +1,5 @@
-
 <?php
-include '../database/db_connect.php';
+include 'database/db_connection.php';
 
 $message = "";
 $toastClass = "";
@@ -11,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Check if email already exists
-    $checkEmailStmt = $conn->prepare("SELECT email FROM userdata WHERE email = ?");
+    $checkEmailStmt = $conn->prepare("SELECT email FROM users WHERE email = ?");
     $checkEmailStmt->bind_param("s", $email);
     $checkEmailStmt->execute();
     $checkEmailStmt->store_result();
@@ -56,19 +55,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <?php include 'header.php'; ?>
+   
+    <?php if (!empty($message)): ?>
+    <div class="alert" style="background-color: <?= $toastClass ?>; color: white; text-align: center;">
+        <?= htmlspecialchars($message) ?>
+    </div>
+    <?php endif; ?>
 
     <main class="container-fluid">
-        <div id="inscription-form" class="row justify-content-center align-items-center" >
+        <div id="inscription-form" class="row justify-content-center align-items-center">
             <div class="col-md-6">
                 <h2 class="text-center text-light py-3">Inscription</h2>
-                <div class="form-floating mb-3 text-center">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-                    <label for="floatingInput">Adresse email</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe" required>
-                    <label for="floatingPassword">Mot de passe</label>
-                </div>
+                <form action="" method="POST">
+                    <div class="form-floating mb-3 text-center">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="login" required>
+                        <label for="floatingInput">login</label>
+                    </div>
+                    <div class="form-floating mb-3 text-center">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                            required>
+                        <label for="floatingInput">Adresse email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe"
+                            required>
+                        <label for="floatingPassword">Mot de passe</label>
+                    </div>
+                    <button class="btn btn-dark" type="submit">Submit form</button>
+                </form>
             </div>
         </div>
     </main>

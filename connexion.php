@@ -26,6 +26,7 @@
                     <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe">
                     <label for="floatingPassword">Mot de passe</label>
                 </div>
+                <button class="btn btn-dark" type="submit">Submit form</button>
             </div>
         </div>
     </main>
