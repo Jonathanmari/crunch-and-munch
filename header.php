@@ -1,6 +1,3 @@
-<?php
-echo <<<HTML
-    
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">Munch & Crunch</a>
@@ -31,12 +28,15 @@ echo <<<HTML
                             </ul>
                         </li>
                     </ul>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                    <a href="dashboard.php" role="button" class="btn btn-outline-light mx-1">Dashboard</a>
+                    <a href="logout.php" role="button" class="btn btn-outline-light mx-1">Déconnexion</a>
+                    <?php else: ?>
                     <a href="connexion.php" role="button" class="btn btn-outline-light mx-1">Connexion</a>
                     <a href="inscription.php" role="button" class="btn btn-outline-light mx-1">Inscription</a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </nav>
 
-    HTML;
-?>

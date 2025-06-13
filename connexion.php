@@ -1,3 +1,30 @@
+<?php
+
+include("database/db_connection.php");
+
+$message = '';
+
+if (isset($_POST['username']) && isset($_POST['password'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+
+    if ($user && password_verify($password, $user['password'])) {
+        session_start();
+        $_SESSION['user_id'] = $user['id'];
+        header('Location: index.php');
+    } else {
+        $message = 'Mauvais identifiants';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,15 +45,17 @@
         <div id="connexion-form" class="row justify-content-center align-items-center" >
             <div class="col-md-6">
                 <h2 class="text-center text-light py-3">Se connecter</h2>
+                <form action="" method="POST">
                 <div class="form-floating mb-3 text-center">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Adresse email</label>
+                    <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Username">
+                    <label for="floatingInput">Username</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe">
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Mot de passe">
                     <label for="floatingPassword">Mot de passe</label>
                 </div>
                 <button class="btn btn-dark" type="submit">Submit form</button>
+                </form>
             </div>
         </div>
     </main>
