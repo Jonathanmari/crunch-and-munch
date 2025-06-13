@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $toastClass = "#007bff"; // Primary color
     } else {
         // Prepare and bind
-        $stmt = $conn->prepare("INSERT INTO users (login, email, password) VALUES (?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $username, $email, $password);
 
         if ($stmt->execute()) {
@@ -68,17 +68,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h2 class="text-center text-light py-3">Inscription</h2>
                 <form action="" method="POST">
                     <div class="form-floating mb-3 text-center">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="login" required>
+                        <input type="text" name="username" class="form-control" id="floatingInput" placeholder="login" required>
                         <label for="floatingInput">login</label>
                     </div>
                     <div class="form-floating mb-3 text-center">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
-                            required>
+                        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                         <label for="floatingInput">Adresse email</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe"
-                            required>
+                        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Mot de passe" required>
                         <label for="floatingPassword">Mot de passe</label>
                     </div>
                     <button class="btn btn-dark" type="submit">Submit form</button>
