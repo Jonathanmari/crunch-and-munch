@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 13 juin 2025 à 08:45
+-- Généré le : lun. 16 juin 2025 à 08:55
 -- Version du serveur : 8.3.0
 -- Version de PHP : 8.2.18
 
@@ -40,16 +40,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `UNIQUE` (`username`) USING BTREE,
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `EMAIL_UNIQUE` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `nom`, `prenom`, `password`, `date_inscription`, `email`) VALUES
-(1, 'jojotest', '', '', 'jojotest', '0000-00-00', 'jojotest@hotmail.fr'),
-(2, 'jojotest2', '', '', 'jojotest2', '0000-00-00', 'jojotest2@gmail.com'),
-(3, 'jojotest3', '', '', 'jojotest3', '0000-00-00', 'jojotest3@hotmail.fr');
+(5, 'jojotest5', '', '', '$2y$10$x/l7JlyZYKJwl64Wim.wPeSy4Bdyh0NcAdTedTE6Kg8/5C3hpFFTe', '0000-00-00', 'jojotest5@hotmail.fr'),
+(4, 'jojotest4', '', '', '$2y$10$n0y9r2780Cg6CwmRRbqvNumAi1F3m.ZaXVq7KpXo/7oVP0I.DbKZa', '0000-00-00', 'jojotest4@gmail.com'),
+(6, 'jojotest6', '', '', '$2y$10$EDf9H7EjuiVXm1LzZSdfGO7BCPVXHkP0EKruIk0jGYlAH16.tI4pS', '0000-00-00', 'jojotest6@hotmail.fr'),
+(7, 'jojotest7', '', '', '$2y$10$pRGjh1yVqEt2e5mP4cVOyeaIl.V1IB/66ZojybpYTUcfnbW.TaI5y', '0000-00-00', 'jojotest7@hotmail.fr');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

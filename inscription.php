@@ -10,33 +10,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Check if email already exists
-    $checkEmailStmt = $conn->prepare("SELECT email FROM users WHERE email = ?");
-    $checkEmailStmt->bind_param("s", $email);
+    $checkEmailStmt = $conn->prepare("SELECT email FROM users WHERE email = :email");
+    $checkEmailStmt->bindParam(':email', $email );
     $checkEmailStmt->execute();
-    $checkEmailStmt->store_result();
+    $emailCount = $checkEmailStmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($checkEmailStmt->num_rows > 0) {
-        $message = "Email ID already exists";
+    if ($emailCount > 0) {
+        $message = "Email already exists";
         $toastClass = "#007bff"; // Primary color
     } else {
         // Prepare and bind
-        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $stmt->bind_param("sss", $username, $email, $hashedPassword);
+        $stmt->bindParam(":username", $username);
+        $stmt->bindParam(":email", $email);
+        $stmt->bindParam(":password", $hashedPassword);
+
 
         if ($stmt->execute()) {
             $message = "Account created successfully";
             $toastClass = "#28a745"; // Success color
         } else {
-            $message = "Error: " . $stmt->error;
+            $message = "Error: " . $stmt->errorInfo();
             $toastClass = "#dc3545"; // Danger color
         }
-
-        $stmt->close();
     }
-
-    $checkEmailStmt->close();
-    $conn->close();
+    header('Location: index.php');
+    exit($message);
 }
 ?>
 
