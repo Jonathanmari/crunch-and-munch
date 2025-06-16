@@ -35,8 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $toastClass = "#dc3545"; // Danger color
         }
     }
+    $stmt->closeCursor();
+    $checkEmailStmt->closeCursor();
     header('Location: index.php');
-    exit($message);
 }
 ?>
 
@@ -56,12 +57,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <?php include 'header.php'; ?>
-   
-    <?php if (!empty($message)): ?>
-    <div class="alert" style="background-color: <?= $toastClass ?>; color: white; text-align: center;">
-        <?= htmlspecialchars($message) ?>
+
+    <!-- toast pour inscription ratée -->
+    <div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">Echec lors de la connexion</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <?php $message ?>
+            </div>
+        </div>
     </div>
-    <?php endif; ?>
 
     <main class="container-fluid">
         <div id="inscription-form" class="row justify-content-center align-items-center">
