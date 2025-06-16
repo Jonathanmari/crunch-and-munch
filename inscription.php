@@ -30,6 +30,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             $message = "Account created successfully";
             $_SESSION['successMsg'] = $message;
+
+            // se connecter au compte inscrit
+            $sql = "SELECT * FROM users WHERE username = :username";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':username', $username);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            session_start();
+            $_SESSION['user_id'] = $user['id'];
+            
             header('Location: index.php');
             
         } else {
