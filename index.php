@@ -17,6 +17,21 @@ session_start();
 <body>
     <?php include 'header.php'; ?>
 
+    <?php if (!empty($message)): ?>
+    <div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="" class="rounded me-2" alt="...">
+                <strong class="me-auto">Connexion réussi</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <?php echo $message; ?>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <main class="container my-4">
         <div class="row justify-content-center">
             <div class="card col-sm m-3 p-3 text-center home-card">
@@ -36,7 +51,17 @@ session_start();
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
+    <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const toastEl = document.getElementById('liveToast');
+        if (toastEl) {
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        }
+    });
+    </script>
 </body>
 
 </html>
