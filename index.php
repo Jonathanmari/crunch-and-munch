@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(isset($_SESSION["successMsg"])):
+$successMsg = $_SESSION['successMsg'];
+endif;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +20,7 @@ session_start();
 <body>
     <?php include 'header.php'; ?>
 
-    <?php if (!empty($message)): ?>
+    <?php if (!empty($successMsg)): ?>
     <div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
@@ -26,11 +29,11 @@ session_start();
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
-                <?php echo $message; ?>
+                <?php echo $successMsg; ?>
             </div>
         </div>
     </div>
-    <?php endif; ?>
+    <?php $_SESSION['successMsg'] = NULL; endif; ?>
 
     <main class="container my-4">
         <div class="row justify-content-center">

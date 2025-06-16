@@ -1,8 +1,8 @@
 <?php
 include 'database/db_connection.php';
+session_start();
 
 $message = "";
-$toastClass = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
@@ -29,12 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             $message = "Account created successfully";
-            $toastClass = "#28a745"; // Success color
+            $_SESSION['successMsg'] = $message;
             header('Location: index.php');
             
         } else {
             $message = "Error: " . $stmt->errorInfo();
-            $toastClass = "#dc3545"; // Danger color
         }
     }
 
