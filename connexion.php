@@ -17,6 +17,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     if ($user && password_verify($password, $user['password'])) {
         session_start();
         $_SESSION['user_id'] = $user['id'];
+        $message = "Connexion réussie";
+        $_SESSION['successMsg'] = $message;
         header('Location: index.php');
     } else {
         $message = 'Mauvais identifiants';
@@ -40,6 +42,22 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 <body>
     <?php include 'header.php'; ?>
 
+    <!-- toast pour connexion ratée -->
+    <?php if (!empty($message)): ?>
+    <div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="" class="rounded me-2" alt="...">
+                <strong class="me-auto">Echec lors de la connexion</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <?php echo $message; ?>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <main class="container-fluid">
         <div id="connexion-form" class="row justify-content-center align-items-center" >
             <div class="col-md-6">
@@ -61,7 +79,17 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
+    <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const toastEl = document.getElementById('liveToast');
+        if (toastEl) {
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        }
+    });
+    </script>
 </body>
 
 </html>

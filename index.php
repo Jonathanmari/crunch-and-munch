@@ -21,18 +21,18 @@ endif;
     <?php include 'header.php'; ?>
 
     <?php if (!empty($successMsg)): ?>
-    <div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
-        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="" class="rounded me-2" alt="...">
-                <strong class="me-auto">Connexion réussi</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                <?php echo $successMsg; ?>
+        <div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="" class="rounded me-2" alt="...">
+                    <strong class="me-auto">Info de connexion</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    <?php echo $successMsg; ?>
+                </div>
             </div>
         </div>
-    </div>
     <?php $_SESSION['successMsg'] = NULL; endif; ?>
 
     <main class="container my-4">
