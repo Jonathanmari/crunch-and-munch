@@ -18,6 +18,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Tous les programmes</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="foodList.php">Tous les ingrédients</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Tous les exercices
@@ -29,11 +32,11 @@
                         </li>
                     </ul>
                     <?php if (isset($_SESSION['user_id'])): ?>
-                    <a href="dashboard.php" role="button" class="btn btn-outline-light mx-1">Dashboard</a>
-                    <a href="logout.php" role="button" class="btn btn-outline-light mx-1">Déconnexion</a>
+                        <a href="dashboard.php" role="button" class="btn btn-outline-light mx-1">Dashboard</a>
+                        <a href="logout.php" role="button" class="btn btn-outline-light mx-1">Déconnexion</a>
                     <?php else: ?>
-                    <a href="connexion.php" role="button" class="btn btn-outline-light mx-1">Connexion</a>
-                    <a href="inscription.php" role="button" class="btn btn-outline-light mx-1">Inscription</a>
+                        <a href="connexion.php" role="button" class="btn btn-outline-light mx-1">Connexion</a>
+                        <a href="inscription.php" role="button" class="btn btn-outline-light mx-1">Inscription</a>
                     <?php endif; ?>
                 </div>
             </div>

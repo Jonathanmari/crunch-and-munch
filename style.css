@@ -18,12 +18,14 @@
 }
 
 @font-face {
-    font-family: 'Lacquer';
-    src: local('Lacquer-Regular');
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: normal;
+    src: local('fonts/Arial'), url('fonts/ARIAL.woff') format('woff');
 }
 
 * {
-    font-family: Lacquer;
+    font-family: Arial;
 }
 
 html, body {
