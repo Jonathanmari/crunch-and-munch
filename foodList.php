@@ -1,18 +1,23 @@
 <?php
     session_start();
     include("database/db_connection.php");
+    
+    $offset = 20;
+    $paginationNum = 1;
+    $startFrom = ($paginationNum - 1) * $offset;
+    $sqlFoodList = "SELECT * FROM foodlist LIMIT $offset OFFSET $startFrom";
 
-    $sqlFoodList = "SELECT * FROM foodlist WHERE id BETWEEN 1 AND 20";
     $stmt = $conn->prepare($sqlFoodList);
     $stmt->execute();
     $foodList = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    // print_r($foodList);
 
     // nombre de lignes dans la bdd foodlist
     $sqlFoodListLines = "SELECT COUNT(*) FROM foodlist";
     $res = $conn->query($sqlFoodListLines);
     $count = $res->fetchColumn();
-    
+    $foodListNavNum = ceil($count / 20);
+
+    // print_r($foodListNavNum);
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +45,7 @@
 
     <main class="container p-5">
         <div class="row">
+                <!-- liste des food -->
                 <?php foreach ( $foodList as $row) {
                     echo "
                         <div class=\"col-lg-3 col-md-4 mb-3\">
@@ -64,9 +70,24 @@
                         </div>
                         "
                 ;} ?>
-        </div>
-        <div class="row">
-
+                <!-- liste des nav buttons -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        
+                            <?php if($paginationNum == 1)
+                                echo "<li class=\"page-item disabled\"><a class=\"page-link text-light bg-dark\">First</a></li>";
+                                echo "<li class=\"page-item disabled\"><a class=\"page-link text-light bg-dark\">Previous</a></li>";
+                                echo "<li class=\"page-item\"><a class=\"page-link  text-light bg-dark\" href=\"#\">1</a></li>";
+                                echo "<li class=\"page-item\"><a class=\"page-link  text-light bg-dark\" href=\"#\">2</a></li>";
+                                echo "<li class=\"page-item\"><a class=\"page-link  text-light bg-dark\" href=\"#\">3</a></li>";
+                                echo "<li class=\"page-item\"><a class=\"page-link  text-light bg-dark\" href=\"#\">4</a></li>";
+                                echo "<li class=\"page-item\"><a class=\"page-link  text-light bg-dark\" href=\"#\">5</a></li>";
+                                echo "<li class=\"page-item\"><a class=\"page-link text-light bg-dark\" href=\"#\">Next</a></li>";
+                                echo "<li class=\"page-item\"><a class=\"page-link text-light bg-dark\" href=\"#\">Last</a></li>";
+                            ; ?>
+                        
+                    </ul>
+                </nav>
         </div>
     </main>
 
