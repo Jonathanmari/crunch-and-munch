@@ -7,6 +7,12 @@
     $stmt->execute();
     $foodList = $stmt->fetchAll(PDO::FETCH_ASSOC);
     // print_r($foodList);
+
+    // nombre de lignes dans la bdd foodlist
+    $sqlFoodListLines = "SELECT COUNT(*) FROM foodlist";
+    $res = $conn->query($sqlFoodListLines);
+    $count = $res->fetchColumn();
+    
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +26,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            
+
+        }); 
+    </script>
 </head>
 
 <body>
@@ -51,6 +64,9 @@
                         </div>
                         "
                 ;} ?>
+        </div>
+        <div class="row">
+
         </div>
     </main>
 
