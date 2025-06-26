@@ -2,22 +2,34 @@
     session_start();
     include("database/db_connection.php");
     
-    $offset = 20;
-    $paginationNum = 1;
-    $startFrom = ($paginationNum - 1) * $offset;
-    $sqlFoodList = "SELECT * FROM foodlist LIMIT $offset OFFSET $startFrom";
+    // Détermine sur quel page on est
+    if(isset($_GET['page']) && !empty($_GET['page'])){
+        $currentPage = (int) strip_tags($_GET['page']);
+    }else{
+        $currentPage = 1;
+    }
 
-    $stmt = $conn->prepare($sqlFoodList);
-    $stmt->execute();
-    $foodList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $parPage = 20;
 
-    // nombre de lignes dans la bdd foodlist
+    // Calcul du 1er article de la page
+    $premier = ($currentPage * $parPage) - $parPage;
+
+    $sqlFoodList = "SELECT * FROM foodlist LIMIT :premier, :parpage";
+
+    $query = $conn->prepare($sqlFoodList);
+    $query->bindValue(':premier', $premier, PDO::PARAM_INT);
+    $query->bindValue(':parpage', $parPage, PDO::PARAM_INT);
+    $query->execute();
+    $foodList = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    // nombre de lignes et d'articles dans la bdd foodlist
     $sqlFoodListLines = "SELECT COUNT(*) FROM foodlist";
     $res = $conn->query($sqlFoodListLines);
     $count = $res->fetchColumn();
-    $foodListNavNum = ceil($count / 20);
 
-    // print_r($foodListNavNum);
+    $nbArticles = (int) $count;
+    $pages = ceil($count / 20);
+
 ?>
 
 <!DOCTYPE html>
@@ -73,18 +85,23 @@
                 <!-- liste des nav buttons -->
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center">
-                        
-                            <?php if($paginationNum == 1)
-                                echo "<li class=\"page-item disabled\"><a class=\"page-link text-light bg-dark\">First</a></li>";
-                                echo "<li class=\"page-item disabled\"><a class=\"page-link text-light bg-dark\">Previous</a></li>";
-                                echo "<li class=\"page-item\"><a class=\"page-link  text-light bg-dark\" href=\"#\">1</a></li>";
-                                echo "<li class=\"page-item\"><a class=\"page-link  text-light bg-dark\" href=\"#\">2</a></li>";
-                                echo "<li class=\"page-item\"><a class=\"page-link  text-light bg-dark\" href=\"#\">3</a></li>";
-                                echo "<li class=\"page-item\"><a class=\"page-link  text-light bg-dark\" href=\"#\">4</a></li>";
-                                echo "<li class=\"page-item\"><a class=\"page-link  text-light bg-dark\" href=\"#\">5</a></li>";
-                                echo "<li class=\"page-item\"><a class=\"page-link text-light bg-dark\" href=\"#\">Next</a></li>";
-                                echo "<li class=\"page-item\"><a class=\"page-link text-light bg-dark\" href=\"#\">Last</a></li>";
-                            ; ?>
+
+                            <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
+                            <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
+                                <a href="http://localhost/Crunch-and-munch/foodList.php?page=<?= $currentPage - 1 ?>" class="page-link text-light bg-dark">Précédente</a>
+                            </li>
+                            
+                            
+                            <?php for($page = 1; $page <= $pages; $page++): ?>
+                                <!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
+                                <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
+                                    <a href="http://localhost/Crunch-and-munch/foodList.php?page=<?= $page ?>" class="page-link text-light bg-dark"><?= $page ?></a>
+                                </li>
+                            <?php endfor ?>
+                                <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
+                                <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
+                                <a href="http://localhost/Crunch-and-munch/foodList.php?page=<?= $currentPage + 1 ?>" class="page-link text-light bg-dark">Suivante</a>
+                            </li>
                         
                     </ul>
                 </nav>
