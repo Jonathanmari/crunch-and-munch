@@ -30,6 +30,11 @@
     $nbArticles = (int) $count;
     $pages = ceil($count / 20);
 
+    // recherche de page par le form
+    if (isset($_POST['pageSearch'])) {
+    $pageSearch = $_POST['pageSearch'];
+    header("Location: http://localhost/Crunch-and-munch/foodList.php?page=$pageSearch");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -83,23 +88,43 @@
                         "
                 ;} ?>
                 <!-- liste des nav buttons -->
-                <nav aria-label="Page navigation">
+                <nav aria-label="Page navigation" data-bs-theme="dark" class="m-auto">
+                    <form action="" method="POST" class="m-auto w-25 p-3">
+                        <div class="form-floating mb-3 text-center">
+                            <input type="number" name="pageSearch" class="form-control bg-dark" id="floatingInput" placeholder="Page">
+                            <label for="floatingInput" class="text-light">Page</label>
+                         </div>
+                    </form>
+
                     <ul class="pagination justify-content-center">
+
 
                             <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
                             <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
                                 <a href="http://localhost/Crunch-and-munch/foodList.php?page=<?= $currentPage - 1 ?>" class="page-link text-light bg-dark">Précédente</a>
                             </li>
+
+                            <?php if ($currentPage > 3): ?>
+                            <li class="debut"><a href="http://localhost/Crunch-and-munch/foodList.php?page=1" class="page-link text-light bg-dark">1</a></li>
+                            <li class="page-item"><a href="" class="page-link text-light bg-dark disabled">...</a></li>
+                            <?php endif; ?>
+
+                            <?php if ($currentPage-2 > 0): ?><li class="page-item"><a href="http://localhost/Crunch-and-munch/foodList.php?page=<?php echo $currentPage-2 ?>" class="page-link text-light bg-dark"><?php echo $currentPage-2 ?></a></li><?php endif; ?>
+                            <?php if ($currentPage-1 > 0): ?><li class="page-item"><a href="http://localhost/Crunch-and-munch/foodList.php?page=<?php echo $currentPage-1 ?>" class="page-link text-light bg-dark"><?php echo $currentPage-1 ?></a></li><?php endif; ?>
+
+                            <li class="page-item"><a href="http://localhost/Crunch-and-munch/foodList.php?page=<?php echo $currentPage ?>" class="page-link text-light bg-dark"><?php echo $currentPage ?></a></li>
+
+                            <?php if ($currentPage+1 < $pages +1): ?><li class="page-item"><a href="http://localhost/Crunch-and-munch/foodList.php?page=<?php echo $currentPage+1 ?>" class="page-link text-light bg-dark"><?php echo $currentPage+1 ?></a></li><?php endif; ?>
+                            <?php if ($currentPage+2 < $pages +1): ?><li class="page-item"><a href="http://localhost/Crunch-and-munch/foodList.php?page=<?php echo $currentPage+2 ?>" class="page-link text-light bg-dark"><?php echo $currentPage+2 ?></a></li><?php endif; ?>
+
+                            <?php if ($currentPage < $pages -2): ?>
+                            <li class="page-item"><a href="" class="page-link text-light bg-dark disabled">...</a></li>
+                            <li class="end"><a href="http://localhost/Crunch-and-munch/foodList.php?page=<?php echo $pages ?>" class="page-link text-light bg-dark"><?php echo $pages ?></a></li>
+                            <?php endif; ?>
                             
-                            
-                            <?php for($page = 1; $page <= $pages; $page++): ?>
-                                <!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
-                                <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
-                                    <a href="http://localhost/Crunch-and-munch/foodList.php?page=<?= $page ?>" class="page-link text-light bg-dark"><?= $page ?></a>
-                                </li>
-                            <?php endfor ?>
-                                <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
-                                <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
+
+                            <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
+                            <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
                                 <a href="http://localhost/Crunch-and-munch/foodList.php?page=<?= $currentPage + 1 ?>" class="page-link text-light bg-dark">Suivante</a>
                             </li>
                         
