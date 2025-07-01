@@ -21,6 +21,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="foodList.php">Tous les ingrédients</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="foodSearch.php">Recherche d'ingrédients</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Tous les exercices
