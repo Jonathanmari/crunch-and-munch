@@ -19,12 +19,14 @@
     
     <?php include 'header.php'; ?>
 
-    <main>
-        <!-- Search box. -->
-        <input type="text" id="search" placeholder="Search" />
+    <main class="container p-5">
+        <div class="row">
+                <!-- Search box. -->
+                <input type="text" id="search" placeholder="Search" style="margin-bottom:20px"/>
 
-        <!-- Suggestions will be displayed in below div. -->
-        <div id="display"></div>
+                <!-- Suggestions will be displayed in below div. -->
+                <div id="display" class="row"></div>
+        </div>
     </main>
 
     <footer class="bg-dark text-white text-center py-3">
